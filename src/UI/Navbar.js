@@ -1,28 +1,45 @@
 import React from "react";
+import { Badge, Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Cart from "../Components/Cart/Cart";
+import { Link } from "react-router-dom";
+import { CartState } from "../Store/Context";
 
 const NavBar = () => {
+  const {
+    state: { cart },
+  } = CartState();
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
           <Navbar.Brand href="#home">
             <img
-              alt=""
-              src="/img/logo.svg"
               width="30"
               height="30"
-              className="d-inline-block align-top"
-            />{" "}
-            React Bootstrap
+              src="https://img.icons8.com/plasticine/100/cleats.png"
+              alt="cleats"
+            />
+            Shoes Selling App
           </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav
+            className="me-auto"
+            style={{ gap: 20, fontWeight: "bold", marginLeft: 40 }}
+          >
+            <Link to="/home">Home</Link>
+            <Link to="/">Store</Link>
+            <Link to="/addshoe">Add Shoes</Link>
           </Nav>
+        </Container>
+        <Container style={{ display: "flex", justifyContent: "right" }}>
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+            CART<Badge>{cart.length}</Badge>
+          </Button>
+
+          <Cart show={modalShow} onHide={() => setModalShow(false)} />
         </Container>
       </Navbar>
     </>

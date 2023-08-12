@@ -1,0 +1,12 @@
+.title {
+  text-align: center;
+}
+.div {
+  margin: 6%;
+}
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+}

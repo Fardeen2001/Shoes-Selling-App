@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./App";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Context from "./Store/Context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Context>
+      <App />
+    </Context>
   </React.StrictMode>
 );
